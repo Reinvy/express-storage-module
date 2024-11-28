@@ -1,8 +1,8 @@
-const service = require('../services');
+const uploadService = require('../services/upload');
 
 module.exports = async (req, res,) => {
     try {
-        await service.uploadS(req.body.userId, req.file);
+        await uploadService(req.body.userId, req.file);
         return res.status(200).json({
             success: true,
             message: 'File uploaded successfully',

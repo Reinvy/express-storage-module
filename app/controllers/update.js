@@ -1,8 +1,8 @@
-const service = require('../services');
+const updateService = require('../services/update');
 
 module.exports = async (req, res, next) => {
     try {
-        await service.updateS(req.body.userId, req.params.id, req.file);
+        await updateService(req.body.userId, req.params.id, req.file);
         return res.status(200).json({
             success: true,
             message: 'File updated successfully',

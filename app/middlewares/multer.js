@@ -17,6 +17,21 @@ const fileFilter = (req, file, cb) => {
     }
 };
 
-const uploadMiddleware = multer({ storage: storage, limits: { fileSize: 1024 * 1024 * 10 }, fileFilter: fileFilter });
+const multerMiddleware = multer({ storage: storage, limits: { fileSize: 1024 * 1024 * 10 }, fileFilter: fileFilter });
 
-module.exports = uploadMiddleware;
+const singleFileMulter = (req, res, next) => {
+    multerMiddleware.single('file')(req, res, (err) => {
+      if (err) {
+        return res.status(500).json({ 
+          success: false,
+          message: err.message
+        });
+      }
+      return next();
+    });
+  }
+
+module.exports = {
+    multerMiddleware,
+    singleFileMulter,
+};

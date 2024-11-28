@@ -1,9 +1,9 @@
-const service = require('../services');
+const destroyService = require('../services/destroy');
 
 module.exports = async (req, res, next) => {
     const fileId = req.params.id;
     try {
-        await service.deleteS(fileId);
+        await destroyService(fileId);
         return res.status(200).json({
             success: true,
             message: 'File deleted successfully',
