@@ -1,5 +1,7 @@
-const upload = require('./uploadService');
+const uploadS = require('./uploadService');
+const deleteS = require('./deleteService');
 
 module.exports = {
-    upload
+    uploadS,
+    deleteS
 }

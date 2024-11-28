@@ -1,16 +1,17 @@
 const service = require('../services');
 
 module.exports = async (req, res, next) => {
+    const fileId = req.params.id;
     try {
-        const result = await service.uploadS(req);
+        await service.deleteS(fileId);
         return res.status(200).json({
             success: true,
-            message: 'File uploaded successfully',
+            message: 'File deleted successfully',
         });
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: 'Error uploading file',
+            message: error.message,
         });
     }
-}
+};

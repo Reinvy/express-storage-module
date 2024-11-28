@@ -15,6 +15,8 @@ router.post('/', (req, res, next) => {
     }
     return next();
   });
-}, controllers.upload);
+}, controllers.uploadC);
+
+router.delete('/:id', controllers.deleteC);
 
 module.exports = router;
