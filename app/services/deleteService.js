@@ -17,7 +17,6 @@ module.exports = async (fileId) => {
             where: { id: fileId }
         });
         await fs.promises.unlink(file.path);
-
     } catch (error) {
         console.error(error);
         if (error.code === 'ENOENT') {

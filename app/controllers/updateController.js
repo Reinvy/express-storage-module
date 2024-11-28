@@ -1,16 +1,16 @@
 const service = require('../services');
 
-module.exports = async (req, res,) => {
+module.exports = async (req, res, next) => {
     try {
-        await service.uploadS(req.body.userId, req.file);
+        await service.updateS(req.body.userId, req.params.id, req.file);
         return res.status(200).json({
             success: true,
-            message: 'File uploaded successfully',
+            message: 'File updated successfully',
         });
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: 'Error uploading file',
+            message: error.message
         });
     }
-}
+};

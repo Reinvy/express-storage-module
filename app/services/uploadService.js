@@ -4,21 +4,19 @@ const fs = require('fs');
 const prisma = new PrismaClient();
 
 
-module.exports = async (req) => {
+module.exports = async (userId, file) => {
     try {
-        const result = await prisma.file.create({
-            data: {
-                name: req.file.originalname,
-                path: req.file.path,
-                size: req.file.size,
-                mimeType: req.file.mimetype,
-                userId: req.body.id
+        await prisma.file.create({
+            data: {  
+                name: file.originalname,
+                path: file.path,
+                size: file.size,
+                mimeType: file.mimetype,
+                userId: userId,
             }
         });
-
-        return result
     } catch (error) {
-        await fs.promises.unlink(req.file.path);
+        await fs.promises.unlink(file.path);
         throw error;
     }
 }

@@ -19,4 +19,16 @@ router.post('/', (req, res, next) => {
 
 router.delete('/:id', controllers.deleteC);
 
+router.put('/:id', (req, res, next) => {
+  uploadMiddleware.single('file')(req, res, (err) => {
+    if (err) {
+      return res.status(500).json({ 
+        success: false,
+        message: err.message
+      });
+    }
+    return next();
+  });
+}, controllers.updateC);
+
 module.exports = router;
