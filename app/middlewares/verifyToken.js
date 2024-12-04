@@ -6,11 +6,19 @@ module.exports = (req, res, next) => {
     const rawToken = req.headers.authorization;
     const token = rawToken && rawToken.split(' ')[1];
     if (!token) {
-        return res.status(403).json({ status: 'error', message: 'unauthorized' });
+        return res.status(403).json({ 
+            success: false,
+            message: 'unauthorized' 
+        });
     }
+    console.log(token);
+    console.log(JWT_SECRET);
     jwt.verify(token, JWT_SECRET, (err, decoded) => {
         if (err) {
-            return res.status(403).json({ status: 'error', message: err.message });
+            return res.status(403).json({ 
+                success: false, 
+                message: err.message 
+            });
         }
         req.user = decoded;
         next();
