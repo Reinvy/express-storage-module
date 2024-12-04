@@ -2,7 +2,7 @@ const uploadService = require('../services/upload');
 
 module.exports = async (req, res,) => {
     try {
-        await uploadService(req.body.userId, req.file);
+        await uploadService(req.user.id, req.file);
         return res.status(200).json({
             success: true,
             message: 'File uploaded successfully',
