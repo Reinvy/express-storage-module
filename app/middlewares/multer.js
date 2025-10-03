@@ -9,15 +9,7 @@ const storage = multer.diskStorage({
     }
 });
 
-const fileFilter = (req, file, cb) => {
-    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/jpg') {
-        cb(null, true);
-    } else {
-        cb({ message: 'Unsupported file format' }, false);
-    }
-};
-
-const multerMiddleware = multer({ storage: storage, limits: { fileSize: 1024 * 1024 * 10 }, fileFilter: fileFilter });
+const multerMiddleware = multer({ storage: storage, limits: { fileSize: 20 * 1024 * 1024 } });
 
 const singleFileMulter = (req, res, next) => {
     multerMiddleware.single('file')(req, res, (err) => {
