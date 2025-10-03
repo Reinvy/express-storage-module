@@ -14,14 +14,20 @@ module.exports = (req, res, next) => {
     // Logika untuk IPv6-mapped IPv4
     const normalizedIp = clientIp.startsWith('::ffff:') ? clientIp.replace('::ffff:', '') : clientIp;
 
+    // Jika whitelist kosong, izinkan semua IP
+    if (whitelistIps.length === 0) {
+        next();
+        return;
+    }
+
     // Periksa apakah IP ada di whitelist
     if (whitelistIps.includes(clientIp) || whitelistIps.includes(normalizedIp)) {
         // Lanjutkan ke endpoint jika IP diizinkan
-        next(); 
+        next();
     } else {
-        return res.status(403).json({ 
+        return res.status(403).json({
             success: false,
-            message: 'Access denied' 
+            message: 'Access denied'
         });
     }
 }
