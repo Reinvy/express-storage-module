@@ -1,13 +1,13 @@
 const { PrismaClient } = require('@prisma/client');
 const fs = require('fs');
+const { pathToUrl } = require('../utils/pathUtils');
 
 const prisma = new PrismaClient();
 
-
 module.exports = async (userId, file) => {
     try {
-        await prisma.file.create({
-            data: {  
+        const createdFile = await prisma.file.create({
+            data: {
                 name: file.originalname,
                 path: file.path,
                 size: file.size,
@@ -15,6 +15,11 @@ module.exports = async (userId, file) => {
                 userId: userId,
             }
         });
+        
+        // Transform path to web-accessible URL
+        createdFile.path = pathToUrl(createdFile.path);
+        
+        return createdFile;
     } catch (error) {
         await fs.promises.unlink(file.path);
         throw error;
