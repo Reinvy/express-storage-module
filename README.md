@@ -356,6 +356,60 @@ The project includes a Postman collection for API testing:
 2. **Storage Management**: Test all CRUD operations for files
 3. **Authentication**: Example JWT token generation
 
+### Testing Without Authentication Service
+
+If you don't have an authentication service or module to generate JWT tokens, you can use online JWT generators for testing purposes. This method is only for development/testing and should not be used in production.
+
+#### Step-by-Step Instructions
+
+1. **Set JWT_SECRET in .env file**:
+   ```bash
+   # Open your .env file and set a secret
+   JWT_SECRET=your-super-secret-key-here
+   ```
+
+2. **Use Online JWT Builder**:
+   - Visit http://jwtbuilder.jamiekurtz.com/
+   - Configure the JWT builder with the following settings:
+     - **Algorithm**: HS256 (HMAC using SHA-256)
+     - **Secret**: Use the same secret as your `JWT_SECRET` in `.env` file
+     - **Payload**: Include user information like:
+       ```json
+       {
+         "userId": "test-user-123",
+         "email": "test@example.com",
+         "iat": 1640995200,
+         "exp": 1641004800
+       }
+       ```
+
+3. **Generate and Copy Token**:
+   - Click "Generate Token" button
+   - Copy the generated JWT token (it will be in the format: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...`)
+
+4. **Use in API Requests**:
+   - Include the generated token in your API requests as a Bearer token:
+   ```
+   Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+   ```
+
+#### Example JWT Builder Configuration
+
+```
+Algorithm: HS256
+Secret: your-super-secret-key-here
+
+Payload:
+{
+  "userId": "test-user-123",
+  "email": "test@example.com",
+  "iat": 1640995200,
+  "exp": 1641004800
+}
+```
+
+**Important**: This method is only for development and testing purposes. In production, you should always use a proper authentication service that generates secure JWT tokens.
+
 ## 🔒 Security Features
 
 ### JWT Authentication
