@@ -17,7 +17,7 @@
   "variable": [
     {
       "key": "base_url",
-      "value": "https://linksy.id/",
+      "value": "http://localhost:3000",
       "type": "string"
     },
     {
@@ -34,8 +34,10 @@
         "header": [],
         "url": {
           "raw": "{{base_url}}",
-          "protocol": "https",
-          "host": ["linksy.id"]
+          "protocol": "http",
+          "host": ["localhost"],
+              "port": "3000",
+          "port": "3000"
         },
         "description": "Get the home page of the application"
       },
@@ -57,8 +59,10 @@
             ],
             "url": {
               "raw": "{{base_url}}api/v1/storages/",
-              "protocol": "https",
-              "host": ["linksy.id"],
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "port": "3000",
               "path": ["api", "v1", "storages", ""]
             },
             "description": "Retrieve all uploaded files. Requires JWT authentication."
@@ -78,8 +82,10 @@
             ],
             "url": {
               "raw": "{{base_url}}api/v1/storages/:id",
-              "protocol": "https",
-              "host": ["linksy.id"],
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "port": "3000",
               "path": ["api", "v1", "storages", ":id"],
               "variable": [
                 {
@@ -118,8 +124,10 @@
             },
             "url": {
               "raw": "{{base_url}}api/v1/storages/",
-              "protocol": "https",
-              "host": ["linksy.id"],
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "port": "3000",
               "path": ["api", "v1", "storages", ""]
             },
             "description": "Upload a new file. Requires JWT authentication. Supports JPEG, PNG, JPG files up to 10MB."
@@ -151,8 +159,10 @@
             },
             "url": {
               "raw": "{{base_url}}api/v1/storages/:id",
-              "protocol": "https",
-              "host": ["linksy.id"],
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "port": "3000",
               "path": ["api", "v1", "storages", ":id"],
               "variable": [
                 {
@@ -179,8 +189,10 @@
             ],
             "url": {
               "raw": "{{base_url}}api/v1/storages/:id",
-              "protocol": "https",
-              "host": ["linksy.id"],
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "port": "3000",
               "path": ["api", "v1", "storages", ":id"],
               "variable": [
                 {
@@ -221,8 +233,10 @@
             },
             "url": {
               "raw": "{{base_url}}api/auth/login",
-              "protocol": "https",
-              "host": ["linksy.id"],
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "port": "3000",
               "path": ["api", "auth", "login"]
             },
             "description": "Example endpoint to generate JWT token. Note: This is an example endpoint that may not exist in your actual API. You'll need to replace this with your actual authentication endpoint."
@@ -250,8 +264,9 @@
                 },
                 "url": {
                   "raw": "{{base_url}}api/auth/login",
-                  "protocol": "https",
-                  "host": ["linksy.id"],
+                  "protocol": "http",
+                  "host": ["localhost"],
+              "port": "3000",
                   "path": ["api", "auth", "login"]
                 }
               },
